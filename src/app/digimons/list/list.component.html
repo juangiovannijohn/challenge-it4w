@@ -1,0 +1,11 @@
+<div>
+    <h3 class="text-2xl text-center my-4">Digimons</h3>
+    <div class="grid grid-cols-2 gap-2 ">
+        <ng-container *ngFor="let digimon of digimons">
+            <div class="bg-slate-300 hover:bg-slate-50 p-2 rounded">
+                <h4 class="text-lg">{{digimon.name}}</h4>
+                <img class="w-full" [src]="digimon.image" alt="{{digimon.name}}">
+            </div>
+        </ng-container>
+    </div>
+</div>
