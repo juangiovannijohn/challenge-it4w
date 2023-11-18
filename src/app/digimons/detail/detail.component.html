@@ -1,1 +1,71 @@
-<p>detail works!</p>
+
+<div class=" min-h-screen p-2">
+    <ng-container *ngIf="digimon ;else notfound">
+        <h4 class="text-3xl text-center mt-4 mb-8">{{digimon.name}}</h4>
+        <div class="flex flex-col sm:flex-row gap-3">
+    
+            <div class="sm:w-1/3 flex flex-row justify-center">
+                <img class="w-auto max-h-[500px] rounded" [src]="digimon.images[0].href" alt="{{digimon.name}}">
+            </div>
+            <div class="sm:w-2/3 flex flex-col">
+                <div class="flex flex-row gap-1">
+                    <span>Age: </span>
+                    <div>
+                        <p class="text-blue-600 mx-1">{{digiAge}}</p>
+                    </div>
+                </div>
+                <div class="flex flex-row gap-1">
+                    <span>Type: </span>
+                    <div class="flex flex-row w-full flex-wrap">
+                        <ng-container *ngFor="let type of digimon.types">
+                            <a (click)="redirectToFilteredList('type',type.type)"
+                                class="text-blue-600 hover:underline mx-1 hover:cursor-pointer">{{type.type}}</a>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="flex flex-row gap-1">
+                    <span>Level: </span>
+                    <div class="flex flex-row w-full flex-wrap">
+                        <ng-container *ngFor="let level of digimon.levels">
+                            <a (click)="redirectToFilteredList('level',level.level)"
+                                class="text-blue-600 hover:underline mx-1 hover:cursor-pointer">{{level.level}}</a>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="flex flex-row gap-1">
+                    <span>Attribute: </span>
+                    <div class="flex flex-row w-full flex-wrap">
+                        <ng-container *ngFor="let attribute of digimon.attributes">
+                            <a (click)="redirectToFilteredList('attribute',attribute.attribute)"
+                                class="text-blue-600 hover:underline mx-1 hover:cursor-pointer">{{attribute.attribute}}</a>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="flex flex-row gap-1">
+                    <span>Next evolutions: </span>
+                    <div class="flex flex-row w-full flex-wrap">
+                        <ng-container *ngFor="let evolution of digimon.nextEvolutions">
+                            <a (click)="redirect(evolution.id)"
+                                class="text-blue-600 hover:underline mx-1 hover:cursor-pointer">{{evolution.digimon}}</a>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="flex flex-row gap-1">
+                    <span>Previous evolutions: </span>
+                    <div class="flex flex-row w-full flex-wrap">
+                        <ng-container *ngFor="let prevEvolution of digimon.priorEvolutions">
+                            <a (click)="redirect(prevEvolution.id)"
+                                class="text-blue-600 hover:underline mx-1 hover:cursor-pointer">{{prevEvolution.digimon}}</a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </ng-container>
+    <ng-template #notfound>
+        <div class="bg-slate-300 hover:bg-slate-50 p-2 hover:cursor-pointer rounded">
+            <h4 class="text-lg">NO HAY DATOS</h4>
+        </div>
+    </ng-template>
+</div>

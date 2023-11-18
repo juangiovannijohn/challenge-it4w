@@ -1,10 +1,23 @@
-<div>
-    <h3 class="text-2xl text-center my-4">Digimons</h3>
-    <div class="grid grid-cols-2 gap-2 ">
+<div class="p-3">
+    <h3 class="text-3xl text-center mt-4 mb-8">All Digimons</h3>
+    <div class="bg-white/10 p-4 rounded mb-2">
+        <h4 class="text-xl mb-2">Filters</h4>
+        <div class="flex flex-row gap-1 mb-3">
+            <span>Current Page : </span> <input class="bg-black/50 px-1 roun"  type="number" [value]="page" (change)="onPageChange($event)">
+        </div>
+        <div class="flex flex-row gap-1 mb-2">
+            <span>Items Page : </span> <input class="bg-black/50 px-1 roun"  type="number" [value]="qtyItems" (change)="onQtyChange($event)">
+        </div>
+        <div class="flex flex-row gap-2 mt-6 ">
+            <button class="bg-slate-600 hover:bg-slate-500 rounded px-2 " (click)="previousPage()">Previous Page</button>
+            <button class="bg-slate-600 hover:bg-slate-500 rounded px-2 "  (click)="nextPage()">Next Page</button>
+        </div>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 ">
         <ng-container *ngFor="let digimon of digimons">
-            <div class="bg-slate-300 hover:bg-slate-50 p-2 rounded">
-                <h4 class="text-lg">{{digimon.name}}</h4>
-                <img class="w-full" [src]="digimon.image" alt="{{digimon.name}}">
+            <div class="bg-white/10 hover:bg-white/20 p-3 hover:cursor-pointer rounded" (click)="redirect(digimon.id)">
+                <h4 class="text-lg mb-2">{{digimon.name}}</h4>
+                <img class="w-full rounded" [src]="digimon.image" alt="{{digimon.name}}">
             </div>
         </ng-container>
     </div>

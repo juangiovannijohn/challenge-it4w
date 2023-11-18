@@ -9,6 +9,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./digimons/digimons.module').then(m => m.DigimonsModule)
   },
+  { path: 'not-found', component: NoFound404Component },
   { path: '**', component: NoFound404Component } //, component: Notfound404Component
 ];
 
